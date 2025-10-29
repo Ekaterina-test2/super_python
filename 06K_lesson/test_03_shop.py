@@ -1,0 +1,36 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+
+def test_shop():
+    driver = webdriver.Firefox()
+    driver.get("https://www.saucedemo.com/")
+    username = driver.find_element(By.ID, "user-name")
+    username.send_keys("standard_user")
+    password = driver.find_element(By.ID, "password")
+    password.send_keys("secret_sauce")
+    button1 = driver.find_element(By.ID, "login-button")
+    button1.click()
+    saucelabsbackpack = driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack")
+    saucelabsbackpack.click()
+    saucelabbolt = driver.find_element(By.ID, "add-to-cart-sauce-labs-bolt-t-shirt")
+    saucelabbolt.click()
+    labsonesie = driver.find_element(By.ID, "add-to-cart-sauce-labs-onesie")
+    labsonesie.click()
+    basket = driver.find_element(By.CLASS_NAME, "shopping_cart_link")
+    basket.click()
+    button_checkout = driver.find_element(By.ID, "checkout")
+    button_checkout.click()
+    firstName = driver.find_element(By.ID, "first-name")
+    firstName.send_keys("Ekaterina")
+    lastName = driver.find_element(By.ID, "last-name")
+    lastName.send_keys("SH")
+    code = driver.find_element(By.ID, "postal-code")
+    code.send_keys("236000")
+    button_cont = driver.find_element(By.ID, "continue")
+    button_cont.click()
+    itog = driver.find_element(By.CLASS_NAME, "summary_total_label")
+    assert itog.text == "Total: $58.29"
+    fin_button = driver.find_element(By.ID, "finish")
+    fin_button.click()
+    driver.quit()
