@@ -1,15 +1,14 @@
 from selenium import webdriver
-from Klass_for_lesson.klass_for_calc import For_calc
+from Klass_for_lesson.klass_for_calc import ForCalc
+import Klass_for_lesson.config
 
 
 def test_calc():
-    sksek = 45
-    chi_1 = "//span[text()='7']"
-    chi_2 = "//span[text()='8']"
-    vern_test = "15"
+    vb = Klass_for_lesson.config
     driver = webdriver.Chrome()
-    For_calc.open_calc(driver)
-    For_calc.sdel_delay(driver, sksek)
-    actual_result = For_calc.Vhod_zn(driver, chi_1, chi_2, sksek, vern_test)
-    assert actual_result == vern_test
+    driver.get("https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")
+    clc = ForCalc(driver)
+    clc.MadeDelay(vb.sksek)
+    actual_result = clc.EnterValue(vb.chi_1, vb.chi_2, vb.sksek, vb.vern_test)
+    assert actual_result == vb.vern_test
     driver.quit()

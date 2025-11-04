@@ -1,19 +1,22 @@
 from selenium.webdriver.common.by import By
 
 
-class for_shop:
-    def make_s_clikom(driver, element, s):
+class ForShop:
+    def __init__(self, driver):
+        self.driver = driver
+
+    def madeWidthClick(self, element, s):
         for i in range(len(element)):
             if (s[i] == 0):
-                dlya_clika = driver.find_element(By.ID, element[i])
+                dlya_clika = self.driver.find_element(By.ID, element[i])
             else:
-                dlya_clika = driver.find_element(By.CLASS_NAME, element[i])
+                dlya_clika = self.driver.find_element(By.CLASS_NAME, element[i])
             dlya_clika.click()
 
-    def make_s_vvodom(driver, sammas, sammasd):
+    def MadeWithData(self, sammas, sammasd):
         for i in range(len(sammas)):
-            kuda = driver.find_element(By.ID, sammas[i])
+            kuda = self.driver.find_element(By.ID, sammas[i])
             kuda.send_keys(sammasd[i])
 
-    def get_pole_sum(driver, element):
-        return driver.find_element(By.CLASS_NAME, element)
+    def GetField(self, element):
+        return self.driver.find_element(By.CLASS_NAME, element)
